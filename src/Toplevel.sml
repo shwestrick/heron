@@ -235,7 +235,7 @@ fun run_from_file s =
   end
 
 (* Entry-point *)
-val _ = (
+fun entrypoint () = (
   print ("\u001B[1mHeron " ^ RELEASE_VERSION ^ " [" ^ COMPILER_CMD ^  "] Release\u001B[0m\n");
   let fun arg_loop args =
     case args of
@@ -262,3 +262,4 @@ val _ = (
     end
 )
 
+val _ = ForkJoin.par (entrypoint, fn _ => ())
